@@ -1,0 +1,110 @@
+===============
+Docker Compose
+==============
+
+=> Our application require multiple containers for execution
+         1) Frontend app container
+         2) backend app containers(microservices)
+         3) DB containers
+   
+   -> Creating multiple containers manually is very difficult and time taking process
+
+Note: Managing "Multi - Container" based applications is difficult task.
+
+*) Docker Compose is used for Managing multiple - containers
+*) Docker Compose is a tool is used to manage multi container based application 
+*) Using Docker compose we can easily setup & deploy multiple containers.
+*) We will use docker-compose.yaml file to provide containers information to docker compose 
+*) Docker Compose YML should contain all the information related to container creation
+
+=======================
+Docker compose YML file
+=======================
+
+version:
+
+services:
+
+network:
+
+volumes:
+
+Note: Docker Compose default file name is "docker-compose.yaml"
+
+-> Docker Compose file we will keep in source code repository.
+
+=======================================
+Spring Boot + MYSQL with Docker Compose
+=======================================
+
+# git clone 
+# cd project Directory
+# mvn clean package 
+# docker build -t spring-boot-mysql-app .
+# docker images 
+# docker-compose ps
+
+// This command is used to create docker containers based on docker compose file configuration 
+# docker compose up -d
+
+=======================
+docker compose commands
+=======================
+
+# Create Containers using docker compose 
+$ docker-compose up
+
+# Create container using different file name 
+$ docker-compose -f <fileName>
+
+# Run docker container in detached mode 
+$ docker-compose up -d 
+
+# Display containers created by docker compose
+$ docker-compose ps
+
+# Display Docker images 
+$ docker-compose images
+
+# Check docker logs 
+$ docker logs -f containerName
+
+# Connect to Container 
+$ docker exec -it <containerName> /bin/sh 
+
+# Stop or Remove docker compose Containers
+$ docker-compose down
+
+
+===================
+docker-compose.yaml
+===================
+
+version: "3"
+services:
+  application:
+    image: spring-boot-mysql-app
+    ports:
+      - "8080:8080"
+    networks:
+      - springboot-db-net
+    depends_on:
+      - mysqldb
+    volumes:
+      - /data/springboot-app
+  mysqldb:
+    image: mysql:8.0
+    networks:
+      - springboot-db-net
+    ports:
+     - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sbms
+    volumes:
+      - /data/mysql
+networks:
+  springboot-db-net:
+
+
+Important Note: Our application and mysql connection will be available in spring boot "application.yaml"

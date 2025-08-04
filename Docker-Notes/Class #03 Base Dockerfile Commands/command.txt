@@ -1,0 +1,148 @@
+
+//Remove docker image 
+docker rmi imageName / id
+
+//Remove docker image forcefully 
+docker rmi -f imageName
+
+//Remove container 
+docker rm container-id
+
+//Remove all stopped containers + unused images + unused networks 
+docker system prune -a 
+
+//See Image Details 
+docker inspect imageId
+
+//run docker image 
+docker run spring-boot
+   -> first it will check the image is present in local system or not if not then 
+   pull from docker Hub
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Dockerfile
+
+=> Dockerfile contains set of Instruction to build the docker image
+=> In Dockerfile we will use Keywords DSL(Domain Specific Language)
+=> Docker Engine will read the docker file instructions from top to bottom to process.
+=> In Docker file we will use below Keywords..
+
+1) FROM 
+2) MAINTAINER
+3) COPY
+4) ADD
+5) RUN 
+6) CMD
+7) ENTRYPOINT
+8) ENV
+9) LABEL 
+10) WORKDIR
+11) EXPOSE
+12) VOLUME
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+FROM:
+
+=> It represent base image to create our docker image
+Syntax:
+
+FROM Java 1.8
+FROM mysql 8.5
+
+MAINTAINER:
+
+=> It is used to specify docker file author instruction.
+
+Syntax: 
+  
+  MAINTAINER Ahsan <ahsan@gmail.com>
+
+-----------------------------------------------------------------------------------
+COPY:
+
+=> It is used to copy the files from source to destination
+Syntax:
+   
+   COPY <SRC>  <DEST>
+
+EX: COPY target/spring-boot.jar      /app/tomcat/webapps/sb-api.jar
+
+-----------------------------------------------------------------------------------
+ADD: 
+-> It is used to copy the files from source to destination while creating docker image 
+Syntax:
+   ADD <SRC> <DEST>
+   ADD <HTTP-URL>  <DEST>
+
+=================================================
+What is difference between COPY Command and ADD ?
+================================================= 
+
+COPY: It can copy from one path to another path with in the same machine.
+ADD:  It can copy from one path to another & it support URL also as source.
+
+------------------------------------------------------------------------------------
+RUN: 
+-> Run Instructions while creating docker image 
+Syntax:
+
+RUN sudo apt update
+RUN sudo apt install git
+RUN sudo git clone URL
+RUN mvn clean package
+
+NOTE: We can write multiple run instructions docker engine will process from top to bottom.
+
+------------------------------------------------------------------------------------
+CMD: 
+
+=> CMD instructions will execute while creating docker container
+=> Using CMD command we can run our application in container
+
+Syntax:
+
+   CMD sudo start tomcat
+
+NOTE: We can write multiple CMD instructions but docker engine will process only last CMD Instruction.
+
+======================================
+What is difference between RUN & CMD ? 
+======================================
+-> RUN instructions will execute while creating docker image.
+-> CMD instructions will execute while creating docker container.
+
+-> We can write multiple run instructions docker engine will process from top to bottom.
+-> We can write multiple CMD instructions but docker engine will process only last CMD Instruction.
+
+Note: There is not use of writing multiple CMD instructions,because docker engine will execute only last command.
+
+------------------------------------------------
+Using this Keywords write one simple docker file
+------------------------------------------------
+FROM ubantu // i want ubantu in my machine as base 
+MAINTAINER Ahsan<ahsan@gmail.com>
+
+//execute while creating image
+RUN echo "Hi im run 1"
+RUN echo "Hi im run 2"
+RUN echo "Hi im run 3"
+
+//execute while creating container
+CMD echo "Hi im cmd 1"
+CMD echo "Hi im cmd 2"
+CMD echo "Hi im cmd 3"
+
+=> save above content in a file (Dockerfile)
+
+---------------------------------------------
+Command to build dockerImage from docker file
+---------------------------------------------
+docker build -t imageName .
+
+-> -t means tage 
+-> . means present working directory
+
+--------------
+Run this image 
+--------------
+-> docker run imageId

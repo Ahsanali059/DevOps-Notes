@@ -1,0 +1,65 @@
+=> Application is nothing but collection of programs
+
+=> Every Application contains 3 layers 
+
+1) Frontend 
+2) Backend 
+3) Database 
+
+-> Life without Docker
+=> In Realtime , our application will be deployed into multiple 
+Enviroments for Testing Purpose 
+
+1) Dev Enviroment --->Developer Testing
+2) QA Enviroment  ---> Testing Team Testing
+3) Prod Enviroment ---> Production Testing
+4) UAT Enviroment ---> User Acceptance Testing/Client side testing
+5) PILOT Enviroment(Pre-Production Enviroment) --> Testing with live Database
+
+=> When Testing is completed in all above Enviroments 
+then it will deployed into Production Enviroment
+=> Production Enviroment is nothing but live server
+=> End users will access the application through browser
+
+============================================================
+Life without Docker
+------------------------------------------------------------
+=> we need to install required software in each environment
+to run our application
+=> we need to make sure we are using same versions of software 
+in all machines.
+=> If any software is mismtach then our application execution is 
+failed.
+
+================
+Life with Docker
+================
+
+=> Docker is a containerization platform 
+=> Docker is used to build and deploy application into any machine without 
+bothering about software installation/ and dependencies.
+
+=> Dependencies means which are required to run our application
+     Dependencies = OS / Angular / Node / Java / Maven / Tomcat / MySQL / MongoDB
+     => These are the dependencies required to run our application
+=> we provide all thses application dependencies in a single file called as 
+Docker file.
+
+=> Docker will reduce the gap between Development and 
+Production Enviroments
+
+===================
+Docker Architecture
+===================
+
+1) DokcerFile: It Contains instruction to build docker image
+2) Docker Image: It is a package which contains code + dependencies.
+3) Docker registry: It is a repository where docker images 
+are stored.
+4) Docker container: It is a running instance of 
+docker image.
+
+Note: Once Docker Image is created then we can run 
+it multiple times
+
+
