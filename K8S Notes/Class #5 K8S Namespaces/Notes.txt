@@ -1,6 +1,6 @@
-===============
+==============
 K8S Namespaces 
-===============
+==============
 
 -> Namespaces are equal to packages in the Java.
 -> Namespaces are used to grouped our K8S Components.
