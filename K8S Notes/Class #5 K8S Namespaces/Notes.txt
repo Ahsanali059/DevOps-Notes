@@ -1,0 +1,11 @@
+===============
+K8S Namespaces 
+===============
+
+-> Namespaces are equal to packages in the Java.
+-> Namespaces are used to grouped our K8S Components.
+-> We can create multiple namespaces in k8s cluster.
+   ex: spring-web-app-ns,spring-web-app-db-ns 
+
+-> Namespaces are logically isolated with each other.
+Note: when we delete namespace all the components created under that namespace will be deleted.

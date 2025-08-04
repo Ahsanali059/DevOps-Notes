@@ -1,0 +1,42 @@
+=====================
+Load Balancer Service
+=====================
+
+-> It is one type of K8S Service.
+
+-> It is used to expose our pods outside cluster using load Balancer
+
+-> When we use Load Balancer as service type then one Load Balancer will be created 
+in AWS Cloud.
+
+-> Using Load Balancer URL we can access our application.
+
+-> Load Balancer will distribute the traffic to multiple worker node nodes
+in Round Robbin fashion.
+
+====================
+Problem in Node Port
+====================
+
+-> When we are using Node Port all traffic load into one worker Node traffic 
+is not distributed
+
+Note: Load Balancer is outside our cluster
+
+=============
+POD Lifecycle
+=============
+
+-> POD is a smallest building block that we can run in K8S cluster.
+
+-> We are using kubectl to send request to control plane to create POD
+
+-> API Server receive our request and will store request details in ETCD.
+
+-> Schedular will find un-scheduled PODS and it will schedule in worker nodes.
+
+-> Node Agent (kubelet) will see POD schedule and it will fire Docker Engine.
+
+-> Docker engine will run our containers.
+
+Note: PODS are emphemeral (Short lived Objects)
