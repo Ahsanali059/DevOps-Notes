@@ -1,0 +1,22 @@
+-> As of now we have created PODS manually using POD manifest.yml.
+-> If we delete our POD,K8S not re-creating the POD hence application will be down.
+
+# Delete pod
+$ kubectl delete pod <pod-name>
+
+# Check pods 
+# kubectl get pods 
+
+-> POD is not recreated because we have created POD manually
+
+############## It is not not recommended to create PODS Manually #############
+
+=> Always we need to create the PODS using K8S components / resources.
+                  1) ReplicationController
+                  2) ReplicaSet 
+                  3) Deployment
+                  4) StatefulSet
+                  5) DaemonSet
+
+Note: These concept are important for interview
+
